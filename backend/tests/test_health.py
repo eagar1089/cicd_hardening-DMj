@@ -22,7 +22,7 @@ def test_health_endpoint_returns_200():
     This is the most fundamental check — is the app alive?
     Every production service needs a health endpoint.
     """
-    response = client.get("/health")
+    response = client.get("/healthz")
     assert response.status_code == 200
 
 
@@ -34,6 +34,6 @@ def test_metrics_endpoint_exists():
 
 def test_health_response_has_status_field():
     #Tests that the /health response body contains a 'status' key.
-    response = client.get("/health")
+    response = client.get("/healthz")
     data = response.json()
     assert "status" in data
