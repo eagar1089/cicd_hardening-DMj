@@ -103,7 +103,7 @@ async def prometheus_metrics_middleware(request: Request, call_next):
     return response
 
 
-@app.get("/healthz")
+@app.get("/health")
 def health():
     return {"status": "ok"}
 
