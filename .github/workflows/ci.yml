@@ -149,7 +149,7 @@ jobs:
         uses: aquasecurity/trivy-action@v0.2.0
         with:
           image-ref: memoryjar-backend:${{ github.sha }}
-          format: sarif
+          format: table
           output: trivy-results.sarif
           scanners: "vuln"
           ignore-unfixed: true
