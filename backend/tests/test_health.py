@@ -8,7 +8,7 @@ import os
 # so we can import main.py
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from backend.main import app  # import your FastAPI app
+from main import app  # import your FastAPI app
 
 # TestClient is FastAPI's built-in test helper.
 # It creates a fake HTTP client that calls your app directly,
