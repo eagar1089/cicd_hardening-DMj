@@ -119,7 +119,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: ["tests","dependency-scan","sast-scan"]
     
-    
     permissions:
       contents: read
       security-events: write
