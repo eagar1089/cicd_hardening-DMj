@@ -7,9 +7,10 @@ import importlib
 import logging
 import os
 import time
+import urllib.request as _urlrequest
+import urllib.error as _urlerror
 from pathlib import Path
 
-import requests
 from prometheus_client import CONTENT_TYPE_LATEST, Counter, Gauge, Histogram, generate_latest
 
 # Load environment variables from .env before importing modules that depend on them

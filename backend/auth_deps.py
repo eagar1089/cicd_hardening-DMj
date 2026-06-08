@@ -1,5 +1,4 @@
 """Firebase auth dependency for protecting routes."""
-import json
 import os
 from pathlib import Path
 import firebase_admin
@@ -19,17 +18,6 @@ load_dotenv()
 
 
 def _build_firebase_cert_from_env() -> dict | None:
-    service_account_json = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
-    if service_account_json:
-        try:
-            cert_data = json.loads(service_account_json)
-            if all(k in cert_data for k in ("project_id", "private_key", "client_email")):
-                cert_data["private_key"] = cert_data["private_key"].replace("\\n", "\n")
-                return cert_data
-            logger.warning("FIREBASE_SERVICE_ACCOUNT_JSON is missing required keys")
-        except json.JSONDecodeError:
-            logger.warning("FIREBASE_SERVICE_ACCOUNT_JSON is not valid JSON")
-
     project_id = os.getenv("FIREBASE_PROJECT_ID")
     private_key = os.getenv("FIREBASE_PRIVATE_KEY")
     client_email = os.getenv("FIREBASE_CLIENT_EMAIL")
@@ -37,17 +25,13 @@ def _build_firebase_cert_from_env() -> dict | None:
     if not project_id or not private_key or not client_email:
         return None
 
-    # Backward-compatible support for split FIREBASE_* vars.
-    cert_data = {
+    return {
+        "type": "service_account",
         "project_id": project_id,
         "private_key": private_key.replace("\\n", "\n"),
         "client_email": client_email,
+        "token_uri": "https://oauth2.googleapis.com/token",
     }
-    cert_data.update({
-        "type": os.getenv("FIREBASE_ACCOUNT_TYPE", "service_account"),
-        "token_uri": os.getenv("FIREBASE_TOKEN_URI", "https://oauth2.googleapis.com/token"),
-    })
-    return cert_data
 
 
 def _initialize_firebase_admin() -> None:
