@@ -144,19 +144,17 @@ jobs:
           ignore-unfixed: true
           ignore-status: "fixed"
           severity: "CRITICAL,HIGH"
-      
-      - name: run trivy to generate SARIF report
-        uses: aquasecurity/trivy-action@v0.2.0
+      - name: Run Trivy to generate SARIF report
+        uses: aquasecurity/trivy-action@v0.20.0
         with:
           image-ref: memoryjar-backend:${{ github.sha }}
-          format: table
+          format: sarif
           output: trivy-results.sarif
-          scanners: "vuln"
+          severity: CRITICAL,HIGH
           ignore-unfixed: true
-          ignore-status: "fixed"
-          severity: "CRITICAL,HIGH"
-      - name: send SARIF report to github security tab
+
+      - name: Upload SARIF report to GitHub Security tab
+        if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: trivy-results.sarif
-          if: always()
