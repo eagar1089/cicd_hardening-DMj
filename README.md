@@ -2,7 +2,7 @@
 
 [![CI Pipeline](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/ci.yml)
 [![Security Scan](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/ci.yml)
-<!-- [![codecov](https://codecov.io/gh/eagar1089/cicd_hardening-DMj/branch/main/graph/badge.svg)](https://codecov.io/gh/eagar1089/cicd_hardening-DMj) -->
+[![codecov](https://codecov.io/gh/eagar1089/cicd_hardening-DMj/branch/main/graph/badge.svg)](https://codecov.io/gh/eagar1089/cicd_hardening-DMj)
 
 A production-grade CI/CD + DevSecOps pipeline built on top of the [Digital Memory Jar](https://github.com/eagar1089/Digital-MemoryJar) FastAPI backend. This project demonstrates real-world security-first pipeline design using GitHub Actions — automated from lint to container scan, with full branch protection and artifact reporting.
 
@@ -147,25 +147,26 @@ Tags are generated automatically based on conventional commit messages.
 ## Running locally
 
 ```bash
-docker build -t memoryjar-backend ./backend
-docker run -p 8000:8000 memoryjar-backend
-
+docker build -t dmj-backend-flask:v1.09.06 .
+docker run -p 8000:8000 dmj-backend-flask:v1.08.06
 # Run tests
 cd backend
-pytest --cov=backend -v
+pytest --cov=backend -v --cov-report=term --cov-report=xml
 
 # Run linting
 ruff check backend/
 
 # Run security scan
-bandit -r backend/ -x backend/tests --severity-level medium
+bandit -r backend/ -x backend/tests --severity-level medium -f json -o bandit-report.json
 ```
 
 ---
 ## Secrets required
 
-`MONGO_URI` = MongoDB Atlas URI |
-`HF_TOKEN` = HuggingFace API token |
+`MONGO_URI` = MongoDB Atlas URI
+`HF_TOKEN` = HuggingFace API token
+`CODECOV_TOKEN` = codecov token
+
 ---
 
 Built by [@eagar1089](https://github.com/eagar1089) · [Digital Memory Jar](https://github.com/eagar1089/Digital-MemoryJar)
