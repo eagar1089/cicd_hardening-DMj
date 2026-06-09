@@ -64,6 +64,7 @@ jobs:
           files: backend/coverage.xml
           flags: unittests
           name: coverage-report
+          token: ${{ secrets.CODECOV_TOKEN }}
 
 # # ── JOB 3: Security — SAST ────────────────────────────────────────────
   sast-scan:
