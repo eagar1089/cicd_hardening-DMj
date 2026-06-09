@@ -4,6 +4,10 @@
 [![Security Scan](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/eagar1089/cicd_hardening-DMj/branch/main/graph/badge.svg)](https://codecov.io/gh/eagar1089/cicd_hardening-DMj)
 
+
+[![Release](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/release.yml/badge.svg)](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/release.yml)
+[![Latest Release](https://img.shields.io/github/v/release/eagar1089/cicd_hardening-DMj)](https://github.com/eagar1089/cicd_hardening-DMj/releases)
+
 A production-grade CI/CD + DevSecOps pipeline built on top of the [Digital Memory Jar](https://github.com/eagar1089/Digital-MemoryJar) FastAPI backend. This project demonstrates real-world security-first pipeline design using GitHub Actions — automated from lint to container scan, with full branch protection and artifact reporting.
 
 ---
@@ -48,6 +52,16 @@ Lint (Ruff)
 - Least-privilege permissions — `contents: read` by default, elevated only where required
 
 ---
+## Versioning
+
+Automated semantic versioning via `release.yml`. Commit message prefixes control the bump:
+
+| Prefix | Example | Bump |
+|---|---|---|
+| `fix:` | `fix: null check on memory save` | patch → v0.0.x |
+| `feat:` | `feat: add emotion timeline` | minor → v0.x.0 |
+| `feat!:` | `feat!: new auth flow` | major → vX.0.0 |
+| `chore:` | `chore: update deps` | no bump |
 
 ## Pipeline screenshots
 
@@ -84,6 +98,12 @@ Lint (Ruff)
 
 </details>
 
+<details>
+<summary>Versioning</summary>
+
+![Codecov report](docs/screenshots/versioning.png)
+
+</details>
 ---
 
 ## Tech stack
