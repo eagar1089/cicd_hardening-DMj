@@ -2,7 +2,7 @@
 
 [![CI Pipeline](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/ci.yml)
 [![Security Scan](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/eagar1089/cicd_hardening-DMj/actions/workflows/ci.yml)
-<!-- [![codecov](https://codecov.io/gh/eagar1089/cicd_hardening-DMj/branch/main/graph/badge.svg)](https://codecov.io/gh/eagar1089/cicd_hardening-DMj) -->
+[![codecov](https://codecov.io/gh/eagar1089/cicd_hardening-DMj/branch/main/graph/badge.svg)](https://codecov.io/gh/eagar1089/cicd_hardening-DMj)
 
 A production-grade CI/CD + DevSecOps pipeline built on top of the [Digital Memory Jar](https://github.com/eagar1089/Digital-MemoryJar) FastAPI backend. This project demonstrates real-world security-first pipeline design using GitHub Actions — automated from lint to container scan, with full branch protection and artifact reporting.
 
