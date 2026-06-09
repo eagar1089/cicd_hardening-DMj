@@ -147,25 +147,26 @@ Tags are generated automatically based on conventional commit messages.
 ## Running locally
 
 ```bash
-docker build -t memoryjar-backend ./backend
-docker run -p 8000:8000 memoryjar-backend
-
+docker build -t dmj-backend-flask:v1.09.06 .
+docker run -p 8000:8000 dmj-backend-flask:v1.08.06
 # Run tests
 cd backend
-pytest --cov=backend -v
+pytest --cov=backend -v --cov-report=term --cov-report=xml
 
 # Run linting
 ruff check backend/
 
 # Run security scan
-bandit -r backend/ -x backend/tests --severity-level medium
+bandit -r backend/ -x backend/tests --severity-level medium -f json -o bandit-report.json
 ```
 
 ---
 ## Secrets required
 
-`MONGO_URI` = MongoDB Atlas URI |
-`HF_TOKEN` = HuggingFace API token |
+`MONGO_URI` = MongoDB Atlas URI
+`HF_TOKEN` = HuggingFace API token
+`CODECOV_TOKEN` = codecov token
+
 ---
 
 Built by [@eagar1089](https://github.com/eagar1089) · [Digital Memory Jar](https://github.com/eagar1089/Digital-MemoryJar)
