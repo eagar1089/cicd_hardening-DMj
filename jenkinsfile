@@ -1,0 +1,25 @@
+pipeline{
+    agent any
+    stages{
+        stage('clone repo'){
+            steps{
+                    git branch: 'main', url: 'https://github.com/eagar1089/2tier_Flask_App-DevOps_Project.git'
+            }
+        }
+        stage('Build'){
+            steps{
+                echo 'Building...'
+                sh 'docker build -t flask-app:latest .'
+            }
+        }
+        stage('Deploy docker compose'){
+            steps{
+                echo 'Deploying...'
+                // if container is running,stop it
+                sh 'docker-compose down || true'
+                // build and run the container
+                sh 'docker-compose up -d --build'
+            }
+        }
+    }
+}
